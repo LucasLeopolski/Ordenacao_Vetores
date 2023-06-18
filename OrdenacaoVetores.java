@@ -9,7 +9,7 @@ import java.util.Scanner;
 
 /**
  *
- * @author Lucas
+ * @author Lucas Leopolski
  */
 public class OrdenacaoVetores {
 
@@ -36,7 +36,9 @@ public class OrdenacaoVetores {
                 exibirVetorSemOrdenacao();
                 ordenacaoInsercao();
             } else if (opcao == 2) {
-                //ord. selecao
+                solicitacaoDados();
+                exibirVetorSemOrdenacao();
+                ordenacaoSelecao();
             } else if (opcao == 3) {
                 //ord; bolha
 
@@ -59,8 +61,6 @@ public class OrdenacaoVetores {
             chave = vetor[i];
 
         }
-        
-        
 
     }
 
@@ -68,17 +68,16 @@ public class OrdenacaoVetores {
 
         System.out.println("\nVETOR INFORMADO PELO USUÁRIO: ");
 
-        
         for (i = 0; i < vetorSemOrdenacao.length; i++) {
-            
+
             System.out.println("Na posição: [" + i + "] Temos o valor = " + vetorSemOrdenacao[i]);
-            
+
         }
 
     }
 
     public static void ordenacaoInsercao() {
-        
+
         System.out.println("\n\nVETOR ORDENADO: ");
         Scanner entrada = new Scanner(System.in);
         for (int i = 1; i < qtddElementos; i++) {
@@ -101,14 +100,31 @@ public class OrdenacaoVetores {
 
     public static void ordenacaoSelecao() {
 
-        int vetor[] = {};
+        for (int i = 0; i < vetor.length; i++) {
+            int menor = i;
 
-        int chave, j, qtddElementos;
+            for (int j = i + 1; j < vetor.length; j++) {
+                if (vetor[j] < vetor[menor]) {
+                    menor = j;
+                }
 
-        qtddElementos = Integer.parseInt(JOptionPane.showInputDialog("Informe o tamanho do Vetor"));
-        vetor = new int[qtddElementos];
+            }
+            troca(vetor, i, menor);
 
-        //   for(int i = 0; i <=)
+        }
+            System.out.println("\n\nVETOR ORDENADO: ");
+        for (int i = 0; i <= vetor.length - 1; i++) {
+            System.out.println("Na posição: [" + i + "] Temos o valor = " + vetor[i]);
+            
+    }
+    }
+
+    public static void troca(int[] vetor, int i, int menor) {
+        int aux = vetor[i];
+        vetor[i] = vetor[menor];
+        vetor[menor] = aux;
+
     }
 
 }
+
