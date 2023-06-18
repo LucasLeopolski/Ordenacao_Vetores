@@ -40,7 +40,9 @@ public class OrdenacaoVetores {
                 exibirVetorSemOrdenacao();
                 ordenacaoSelecao();
             } else if (opcao == 3) {
-                //ord; bolha
+                solicitacaoDados();
+                exibirVetorSemOrdenacao();
+                bubleSort();
 
             }
         }
@@ -112,11 +114,11 @@ public class OrdenacaoVetores {
             troca(vetor, i, menor);
 
         }
-            System.out.println("\n\nVETOR ORDENADO: ");
+        System.out.println("\n\nVETOR ORDENADO: ");
         for (int i = 0; i <= vetor.length - 1; i++) {
             System.out.println("Na posição: [" + i + "] Temos o valor = " + vetor[i]);
-            
-    }
+
+        }
     }
 
     public static void troca(int[] vetor, int i, int menor) {
@@ -126,5 +128,25 @@ public class OrdenacaoVetores {
 
     }
 
-}
+    public static void bubleSort() {
+        System.out.println("\nVETOR ORDENADO:");
+        boolean troca = true;
 
+        while (troca) {
+            troca = false;
+            for (i = 0; i < vetor.length-1; i++) {
+                if (vetor[i] > vetor[i + 1]){
+                int aux = vetor[i];
+                vetor[i] = vetor[i + 1];
+                vetor[i + 1] = aux;
+                troca = true;
+            }
+            }
+        }
+
+        for (int i = 0; i < vetor.length; i++) {
+            System.out.println("Na posição: [" + i + "] Temos o valor = " + vetor[i]);
+        }
+    }
+
+}
