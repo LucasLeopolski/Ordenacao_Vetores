@@ -56,7 +56,6 @@ public class OrdenacaoVetores {
         vetorSemOrdenacao = new int[qtddElementos];
 
         for (int i = 0; i < qtddElementos; i++) {
-
             System.out.printf(" Digite um número: ");
             vetor[i] = entrada.nextInt();
             vetorSemOrdenacao[i] = vetor[i];
@@ -80,6 +79,8 @@ public class OrdenacaoVetores {
 
     public static void ordenacaoInsercao() {
 
+        long tempoInicial = System.currentTimeMillis();
+
         System.out.println("\n\nVETOR ORDENADO: ");
         Scanner entrada = new Scanner(System.in);
         for (int i = 1; i < qtddElementos; i++) {
@@ -98,9 +99,14 @@ public class OrdenacaoVetores {
             System.out.println("Na posição: [" + i + "] Temos o valor = " + vetor[i]);
         }
 
+        long tempoFinal = System.currentTimeMillis();
+
+        System.out.println("\nTEMPO DE EXECUÇÃO DO MÉTODO: " + (tempoFinal - tempoInicial) + " MS");
+
     }
 
     public static void ordenacaoSelecao() {
+        long tempoInicial = System.currentTimeMillis();
 
         for (int i = 0; i < vetor.length; i++) {
             int menor = i;
@@ -119,6 +125,8 @@ public class OrdenacaoVetores {
             System.out.println("Na posição: [" + i + "] Temos o valor = " + vetor[i]);
 
         }
+        long tempoFinal = System.currentTimeMillis();
+        System.out.println("\nTEMPO DE EXECUÇÃO DO MÉTODO: " + (tempoFinal - tempoInicial) + " MS");
     }
 
     public static void troca(int[] vetor, int i, int menor) {
@@ -129,24 +137,29 @@ public class OrdenacaoVetores {
     }
 
     public static void bubleSort() {
+        long tempoInicial = System.currentTimeMillis();
+
         System.out.println("\nVETOR ORDENADO:");
         boolean troca = true;
 
         while (troca) {
             troca = false;
-            for (i = 0; i < vetor.length-1; i++) {
-                if (vetor[i] > vetor[i + 1]){
-                int aux = vetor[i];
-                vetor[i] = vetor[i + 1];
-                vetor[i + 1] = aux;
-                troca = true;
-            }
+            for (i = 0; i < vetor.length - 1; i++) {
+                if (vetor[i] > vetor[i + 1]) {
+                    int aux = vetor[i];
+                    vetor[i] = vetor[i + 1];
+                    vetor[i + 1] = aux;
+                    troca = true;
+                }
             }
         }
 
         for (int i = 0; i < vetor.length; i++) {
             System.out.println("Na posição: [" + i + "] Temos o valor = " + vetor[i]);
         }
+        long tempoFinal = System.currentTimeMillis();
+        System.out.println("\nTEMPO DE EXECUÇÃO DO MÉTODO: " + (tempoFinal - tempoInicial) + " MS");
+
     }
 
 }
