@@ -27,11 +27,11 @@ public class OrdenacaoVetores {
         while (opcao != 0) {
 
             opcao = Integer.parseInt(JOptionPane.showInputDialog(
-                    " [1] - Ordenação por Inserção \n"
+                    "[1] - Ordenação por Inserção \n"
                     + "[2] - Ordenação por Seleção \n"
                     + "[3] - Ordenação Bolha \n"
                     + "[4] - Pesquisa Linear \n"
-                    + "[5] - Pesquisa Binaria \n" 
+                    + "[5] - Pesquisa Binaria \n"
                     + "[0] - Sair \n"
             ));
 
@@ -57,24 +57,32 @@ public class OrdenacaoVetores {
                 } else {
                     System.out.println("O Elemento " + pesquisa + " não foi localizado na lista");
                 }
+            } else if (opcao == 5) {
+                int pesquisa = Integer.parseInt(
+                        JOptionPane.showInputDialog("Informe o número a ser pesquisado: "));
+                int posicao = pesquisaBinaria(pesquisa, vetor);
+                if (posicao >= 0) {
+                    System.out.println("O número " + pesquisa + " está localizado na posição: " + posicao);
+
+                } else {
+                    System.out.println("O Elemento " + pesquisa + " não foi localizado na lista");
+                }
             }
         }
+
     }
 
     public static void solicitacaoDados() {
-        // Scanner entrada = new Scanner(System.in);
+
         Random numerosVetor = new Random();
         qtddElementos = Integer.parseInt(JOptionPane.showInputDialog("Informe o tamanho do Vetor"));
         vetor = new int[qtddElementos];
         vetorSemOrdenacao = new int[qtddElementos];
 
-        //  vetorSemOrdenacao = new int[qtddElementos];
         for (int i = 0; i < vetor.length; i++) {
-            //System.out.printf(" Digite um número: ");
-            // vetor[i] = entrada.nextInt();
+
             vetor[i] = numerosVetor.nextInt(700000);
             vetorSemOrdenacao[i] = vetor[i];
-            //chave = vetor[i];
 
         }
 
@@ -95,7 +103,6 @@ public class OrdenacaoVetores {
     public static void ordenacaoInsercao() {
 
         long tempoInicial = System.currentTimeMillis();
-
         System.out.println("\n\nVETOR ORDENADO PELO MÉTODO INSERTIONSORT: ");
 
         for (int i = 1; i < vetor.length; i++) {
@@ -185,6 +192,24 @@ public class OrdenacaoVetores {
         for (int i = 0; i < vetor.length; i++) {
             if (chave == vet[i]) {
                 return i;
+            }
+        }
+        return -1;
+    }
+
+    public static int pesquisaBinaria(int chave, int[] vet) {
+        int esquerda, meio, direita;
+        esquerda = 0;
+        direita = vet.length - 1;
+        while (esquerda <= direita) {
+            meio = (esquerda + direita) / 2;
+            if (chave == vet[meio]) {
+                return meio;
+            }
+            if (chave > vet[meio]) {
+                esquerda = meio + 1;
+            } else {
+                direita = meio - 1;
             }
         }
         return -1;
