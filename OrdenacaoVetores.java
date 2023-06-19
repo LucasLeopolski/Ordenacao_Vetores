@@ -19,28 +19,30 @@ public class OrdenacaoVetores {
     Scanner entrada = new Scanner(System.in);
 
     public static void main(String[] args) {
+        solicitacaoDados();
 
         int opcao = -1;
 
         while (opcao != 0) {
 
             opcao = Integer.parseInt(JOptionPane.showInputDialog(
-                    "Informe a sua escolha!\n"
-                    + "[1] - Ordenação por Inserção \n"
+                      "[1] - Ordenação por Inserção \n"
                     + "[2] - Ordenação por Seleção \n"
                     + "[3] - Ordenação Bolha \n"
-                    + "[0] - Sair \n"));
+                    + "[0] - Sair \n"
+            ));
+            if (opcao == 1) {
+            solicitacaoDados(); 
+            
+            }
 
             if (opcao == 1) {
-                solicitacaoDados();
                 exibirVetorSemOrdenacao();
                 ordenacaoInsercao();
-            } else if (opcao == 2) {
-                solicitacaoDados();
+            } else if (opcao == 2) { 
                 exibirVetorSemOrdenacao();
                 ordenacaoSelecao();
             } else if (opcao == 3) {
-                solicitacaoDados();
                 exibirVetorSemOrdenacao();
                 bubleSort();
 
@@ -81,7 +83,7 @@ public class OrdenacaoVetores {
 
         long tempoInicial = System.currentTimeMillis();
 
-        System.out.println("\n\nVETOR ORDENADO: ");
+        System.out.println("\n\nVETOR ORDENADO PELO MÉTODO INSERTIONSORT: ");
         Scanner entrada = new Scanner(System.in);
         for (int i = 1; i < qtddElementos; i++) {
 
@@ -120,7 +122,7 @@ public class OrdenacaoVetores {
             troca(vetor, i, menor);
 
         }
-        System.out.println("\n\nVETOR ORDENADO: ");
+        System.out.println("\n\nVETOR ORDENADO PELO MÉTODO SELECTIONSORT: ");
         for (int i = 0; i <= vetor.length - 1; i++) {
             System.out.println("Na posição: [" + i + "] Temos o valor = " + vetor[i]);
 
@@ -139,7 +141,7 @@ public class OrdenacaoVetores {
     public static void bubleSort() {
         long tempoInicial = System.currentTimeMillis();
 
-        System.out.println("\nVETOR ORDENADO:");
+        System.out.println("\nVETOR ORDENADO PELO MÉTODO BUBBLESORT:");
         boolean troca = true;
 
         while (troca) {
