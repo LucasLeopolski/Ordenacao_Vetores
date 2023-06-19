@@ -4,6 +4,7 @@
 package com.mycompany.ordenacaovetores;
 
 import java.util.ArrayList;
+import java.util.Random;
 import javax.swing.JOptionPane;
 import java.util.Scanner;
 
@@ -26,42 +27,54 @@ public class OrdenacaoVetores {
         while (opcao != 0) {
 
             opcao = Integer.parseInt(JOptionPane.showInputDialog(
-                      "[1] - Ordenação por Inserção \n"
+                    " [1] - Ordenação por Inserção \n"
                     + "[2] - Ordenação por Seleção \n"
                     + "[3] - Ordenação Bolha \n"
+                    + "[4] - Pesquisa Linear \n"
+                    + "[5] - Pesquisa Binaria \n" 
                     + "[0] - Sair \n"
             ));
-            if (opcao == 1) {
-            solicitacaoDados(); 
-            
-            }
 
             if (opcao == 1) {
                 exibirVetorSemOrdenacao();
                 ordenacaoInsercao();
-            } else if (opcao == 2) { 
+            } else if (opcao == 2) {
                 exibirVetorSemOrdenacao();
                 ordenacaoSelecao();
             } else if (opcao == 3) {
                 exibirVetorSemOrdenacao();
                 bubleSort();
+            } else if (opcao == 4) {
 
+                int pesquisa = Integer.parseInt(
+                        JOptionPane.showInputDialog("Informe o número a ser pesquisado: "));
+
+                int posicao = pesquisaLinear(pesquisa, vetor);
+
+                if (posicao >= 0) {
+                    System.out.println("O número " + pesquisa + " está localizado na posição: " + posicao);
+
+                } else {
+                    System.out.println("O Elemento " + pesquisa + " não foi localizado na lista");
+                }
             }
         }
     }
 
     public static void solicitacaoDados() {
-        Scanner entrada = new Scanner(System.in);
-
+        // Scanner entrada = new Scanner(System.in);
+        Random numerosVetor = new Random();
         qtddElementos = Integer.parseInt(JOptionPane.showInputDialog("Informe o tamanho do Vetor"));
         vetor = new int[qtddElementos];
         vetorSemOrdenacao = new int[qtddElementos];
 
-        for (int i = 0; i < qtddElementos; i++) {
-            System.out.printf(" Digite um número: ");
-            vetor[i] = entrada.nextInt();
+        //  vetorSemOrdenacao = new int[qtddElementos];
+        for (int i = 0; i < vetor.length; i++) {
+            //System.out.printf(" Digite um número: ");
+            // vetor[i] = entrada.nextInt();
+            vetor[i] = numerosVetor.nextInt(700000);
             vetorSemOrdenacao[i] = vetor[i];
-            chave = vetor[i];
+            //chave = vetor[i];
 
         }
 
@@ -84,8 +97,8 @@ public class OrdenacaoVetores {
         long tempoInicial = System.currentTimeMillis();
 
         System.out.println("\n\nVETOR ORDENADO PELO MÉTODO INSERTIONSORT: ");
-        Scanner entrada = new Scanner(System.in);
-        for (int i = 1; i < qtddElementos; i++) {
+
+        for (int i = 1; i < vetor.length; i++) {
 
             chave = vetor[i];
 
@@ -104,6 +117,7 @@ public class OrdenacaoVetores {
         long tempoFinal = System.currentTimeMillis();
 
         System.out.println("\nTEMPO DE EXECUÇÃO DO MÉTODO: " + (tempoFinal - tempoInicial) + " MS");
+        System.out.println("\nTEMPO DE EXECUÇÃO: " + (tempoFinal - tempoInicial) / 1000 + " SEGUNDOS");
 
     }
 
@@ -129,6 +143,7 @@ public class OrdenacaoVetores {
         }
         long tempoFinal = System.currentTimeMillis();
         System.out.println("\nTEMPO DE EXECUÇÃO DO MÉTODO: " + (tempoFinal - tempoInicial) + " MS");
+        System.out.println("\nTEMPO DE EXECUÇÃO: " + (tempoFinal - tempoInicial) / 1000 + " SEGUNDOS");
     }
 
     public static void troca(int[] vetor, int i, int menor) {
@@ -161,7 +176,17 @@ public class OrdenacaoVetores {
         }
         long tempoFinal = System.currentTimeMillis();
         System.out.println("\nTEMPO DE EXECUÇÃO DO MÉTODO: " + (tempoFinal - tempoInicial) + " MS");
+        System.out.println("\nTEMPO DE EXECUÇÃO: " + (tempoFinal - tempoInicial) / 1000 + " SEGUNDOS");
 
     }
 
+    public static int pesquisaLinear(int chave, int[] vet) {
+
+        for (int i = 0; i < vetor.length; i++) {
+            if (chave == vet[i]) {
+                return i;
+            }
+        }
+        return -1;
+    }
 }
